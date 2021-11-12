@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Mon Espace</title>
+
+<link rel="stylesheet" type="text/css" media="all" href="../css/save.css" th:href="@{/css/save.css}" />
+<link rel="stylesheet" type="text/css" media="all" href="../bootstrap/bootstrap.css" th:href="@{/bootstrap/bootstrap.css}" />
+<link rel="stylesheet" type="text/css" media="all" href="../icone/font-awesome.css" th:href="@{/icone/font-awesome.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<nav class="nav">
+        <div class="container">
+            <div class="logo">
+                <a href="auth">logout</a>
+            </div>
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                    <li><a href="/welcome">HOME</a></li>
+                    <li><a href="/saveLivre">Enregistrer un livre</a></li>
+                    <li><a href="/genre">genre</a></li>
+                    <li><a href="/monespace">mes livres</a></li>
+                    <li><a href="/team">note equipe</a></li>
+                </ul>
+            </div>
+            <span class="navTrigger">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+        </div>
+    </nav>
+
+    <section class="home">
+    </section>
+    <div style="height: 100px">
+        <!-- just to make scrolling effect possible -->
+			<h2 class="myH2">Bienvenue dans votre bibliotheque &eacute;l&eacute;ctronique</h2>
+		
+			</p>
+    </div>
+
+<!-- Jquery needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+<!-- Function used to shrink nav bar removing paddings and adding black background -->
+    <script>
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 50) {
+                $('.nav').addClass('affix');
+                console.log("OK");
+            } else {
+                $('.nav').removeClass('affix');
+            }
+        });
+    </script>
+    
+    <div class="container">
+<form action="/monespace" method="post">
+<h1 align="center">Bienvenue dans votre espace</h1>
+<label>saisir le nom de l'auteur ou le nom du livre : </label><input type="text" name="rech" class="form-control" placeholder="Search"/>  <input type="submit" value="rechercher" class="btn btn-warning" /> 
+<br> <br>
+   <table class="table" border="1" align="center">
+   <thead class="thead-dark">
+   <tr>
+       <th scope="col"> id </th>
+       <th scope="col"> nom </th>
+       <th scope="col"> genre </th>
+       <th scope="col"> image </th>
+       <th scope="col"> pdf </th>
+       <th scope="col"> actions </th>
+       
+   </tr>
+    </thead>  
+           <tr  th:Each="p:${livres}">
+              <td scope="row" th:text=${p.idLivre}  > </td>  
+              <td th:text=${p.nomLivre} /></td>
+              <td th:text=${p.genre} ></td>
+              <td> <img th:src="@{/image/{photos}(photos=${p.photos})}" style="width:200px;height:200px;" > </td>
+              <td> <a th:href="@{/fichier/{contenu}(contenu=${p.contenu})}" target="_blank">telecharger le pdf ici</a></td>
+              <td>  <a th:href="@{/delete/{idLivre}(idLivre=${p.idLivre})}"> supprimer</a>  
+                    <a th:href="@{/update_Livre/{idLivre}(idLivre=${p.idLivre})}">modifier</td>  
+             <!--       <td>  <a href="/welcome"> supprimer </a>  
+                    <a href="saveL"> modifier </a>  -->
+              </div>
+              
+           </tr>
+         
+    </th:Each>
+   </table>
+
+ </form>
+ </div>
+
+<div class="footer-basic">
+        <footer>
+            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="welcome">Home</a></li>
+                <li class="list-inline-item"><a href="team">team</a></li>
+                
+            </ul>
+            <p class="copyright">Bibliotheque © 2021</p>
+        </footer>
+    </div>
+    
+
+<script src="/bootstrap/bootstrap.js"></script>
+</body>
+</html>

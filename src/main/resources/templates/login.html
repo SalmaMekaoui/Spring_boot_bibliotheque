@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<link rel="stylesheet" type="text/css" media="all" href="../css/save.css" th:href="@{/css/save.css}" />
+<link rel="stylesheet" type="text/css" media="all" href="../bootstrap/bootstrap.css" th:href="@{/bootstrap/bootstrap.css}" />
+<link rel="stylesheet" type="text/css" media="all" href="../icone/font-awesome.css" th:href="@{/icone/font-awesome.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+</head>
+<body>
+<nav class="nav">
+        <div class="container">
+            <div class="logo">
+                <a href="auth">S'authentifier</a>
+            </div>
+            <div id="mainListDiv" class="main_list">
+                
+            </div>
+            <span class="navTrigger">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+        </div>
+    </nav>
+
+    <section class="home">
+    </section>
+    <div style="height: 100px">
+        <!-- just to make scrolling effect possible -->
+			<h2 class="myH2">Bienvenue dans votre bibliotheque &eacute;l&eacute;ctronique</h2>
+		
+			</p>
+    </div>
+
+<!-- Jquery needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+<!-- Function used to shrink nav bar removing paddings and adding black background -->
+    <script>
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 50) {
+                $('.nav').addClass('affix');
+                console.log("OK");
+            } else {
+                $('.nav').removeClass('affix');
+            }
+        });
+    </script>
+
+<div class="container">
+<h1>S'AUTHENTIFIER</h1>>
+
+<form action="auth" method="post">
+<label>login:</label>
+<input type="text" name="login"  class="form-control"> <br>
+<label>password:</label>
+<input type="text" name="psw"  class="form-control"><br>
+<div class="checkbox">
+      <label><input type="checkbox"> Remember me</label>
+    </div>
+<input type="submit" value="s'authentifier" class="btn btn-warning">
+
+</form>
+
+<p th:text=${hello}/>
+
+
+<div class="footer-basic">
+        <footer>
+            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="welcome">Home</a></li>
+                <li class="list-inline-item"><a href="team">team</a></li>
+                
+            </ul>
+            <p class="copyright">Bibliotheque © 2021</p>
+        </footer>
+    </div>
+    
+
+<script src="/bootstrap/bootstrap.js"></script>
+</body>
+</html>
